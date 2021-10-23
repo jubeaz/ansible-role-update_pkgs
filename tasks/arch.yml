@@ -1,0 +1,12 @@
+---
+- name: Upgrade all packages on servers
+  pacman:
+    update_cache: true
+    upgrade: true
+
+- name: Check if a reboot is needed on all servers
+  register: __reboot_required_file
+  stat:
+    path: /var/run/reboot-required
+  changed_when: __reboot_required_file.stat.exists == true
+  notify: reboot
