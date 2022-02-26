@@ -4,6 +4,8 @@
   pacman:
     update_cache: true
     upgrade: true
+  changed_when: __pacman.upgrade.packages is defined
+
 
 - name: Reboot Required
   register: __reboot_required_file
@@ -12,7 +14,7 @@
   changed_when: __reboot_required_file.stat.exists == true
 
 - name: Create log directory
-  when: (__pacman_upgrade.changed == true) or (__reboot_requires_file.stat.exists == true)
+  when: (__pacman_upgrade.changed == true) or (__reboot_required_file.stat.exists == true)
   delegate_to:  localhost
   file:
     state: directory

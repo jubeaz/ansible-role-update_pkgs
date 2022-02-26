@@ -14,4 +14,3 @@
   stat:
     path: /var/run/reboot-required
   changed_when: __reboot_required_file.stat.exists == true
-  notify: Reboot
