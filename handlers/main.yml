@@ -1,4 +1,4 @@
 ---
 # handlers file for update-pkgs
-- name: Reboot
-  reboot:
+#- name: Reboot
+#  reboot:

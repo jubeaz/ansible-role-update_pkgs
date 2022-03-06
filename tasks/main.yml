@@ -1,5 +1,9 @@
 ---
-- include_tasks: ubuntu.yml
-  when: ansible_distribution == "Ubuntu"
-- include_tasks: arch.yml
-  when: ansible_distribution == "Archlinux"
+- name: assert proper distribution
+  assert:
+    that:
+      - ansible_distribution in ['Kali', 'Ubuntu', 'Archlinux']
+    quiet: true
+
+- include_tasks: "{{ ansible_distribution }}.yml"
+
